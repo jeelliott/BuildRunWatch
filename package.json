@@ -1,0 +1,93 @@
+{
+    "name": "runs",
+    "displayName": "The Runs",
+    "description": "Context menu for building, cleaning, running or watching .NET Core C# projects",
+    "version": "0.0.6",
+    "publisher": "Fragomen",
+    "engines": {
+        "vscode": "^1.18.0"
+    },
+    "activationEvents": [
+        "onCommand:runs.build",
+        "onCommand:runs.clean",
+        "onCommand:runs.run",
+        "onCommand:runs.watch",
+        "onCommand:runs.start"
+    ],
+    "main": "./out/extension",
+    "contributes": {
+        "commands": [
+            {
+                "command": "runs.build",
+                "title": "Build project"
+            },
+            {
+                "command": "runs.clean",
+                "title": "Clean project"
+            },
+            {
+                "command": "runs.run",
+                "title": "Run project"
+            },
+            {
+                "command": "runs.watch",
+                "title": "Watch project"
+            },
+            {
+                "command": "runs.start",
+                "title": "Run Npm Start"
+            }
+        ],
+        "menus": {
+            "explorer/context": [
+                {
+                    "when": "resourceExtname == .csproj",
+                    "command": "runs.build",
+                    "group": "2_workspace@1"
+                },
+                {
+                    "when": "resourceExtname == .csproj",
+                    "command": "runs.clean",
+                    "group": "2_workspace@2"
+                },
+                {
+                    "when": "resourceExtname == .csproj",
+                    "command": "runs.run",
+                    "group": "2_workspace@3"
+                },
+                {
+                    "when": "resourceExtname == .csproj",
+                    "command": "runs.watch",
+                    "group": "2_workspace@4"
+                },
+                {
+                    "when": "resourceFilename == angular.json",
+                    "command": "runs.start",
+                    "group": "2_workspace@5"
+                }
+            ]
+        },
+        "configuration": {
+            "type": "object",
+            "title": "runs"
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install"
+    },
+    "devDependencies": {
+        "@types/mocha": "^2.2.42",
+        "@types/node": "^7.0.43",
+        "tslint": "^5.8.0",
+        "typescript": "^2.6.1",
+        "vscode": "^1.1.21"
+    },
+    "dependencies": {
+        "@types/mkdirp": "^0.5.2",
+        "@types/rimraf": "^2.0.2",
+        "rimraf": "^2.6.2"
+    }
+}
